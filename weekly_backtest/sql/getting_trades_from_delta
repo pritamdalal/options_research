@@ -1,0 +1,17 @@
+-- select *
+-- from chain_history
+-- where underlying in ('SPY', 'QQQ')
+-- and expiration = '2010-06-11'
+-- and trade_date = '2010-06-04';
+
+select * from 
+	(select *, abs(delta - 0.1) as delta_diff
+	from otm_history
+	where underlying = 'SPY'
+	and expiration = '2010-06-11'
+	and trade_date = '2010-06-04'
+	--and abs(delta - 0.1) = least(abs(delta - 0.1))
+	--and abs(delta - 0.1) = least(abs(delta - 0.1))
+	order by strike)
+where 
+;
